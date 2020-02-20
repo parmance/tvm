@@ -343,7 +343,7 @@ class Conv(OnnxOpConverter):
             attr.pop('auto_pad')
         elif len(attr['kernel_shape']) == 2:
             sym_pad = True
-            padding = attr['pads']
+            padding = attr.get('pads', (0, 0, 0, 0))
             for i in range(0, len(padding), 2):
                 sym_pad = sym_pad and padding[i] == padding[i + 1]
 
